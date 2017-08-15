@@ -7,7 +7,8 @@
         <thead>
         <tr>
             <th>Shelving Name</th>
-            <th>Shelfs Quantity</th>
+            <th>Max Shelfs Quantity</th>
+            <th>Existing shelves</th>
         </tr>
         </thead>
         <tbody>
@@ -15,6 +16,7 @@
             <tr>
                 <td>{{ shelving.name }}></td>
                 <td>{{ shelving.shelfsQuantity }}></td>
+                <td>{{ shelving.shelfs.count }}</td>
                 <td>
                     <a href="/shelvings_list/{{ shelving.id }}"><button type="button" class="btn btn-success">View</button></a>
                     <a href="/shelvings_list/edit/{{ shelving.id }}"><button type="button" class="btn btn-warning">Edit</button></a>

@@ -1,0 +1,6 @@
+# This is our production compose file - not changed for docker-sync or similar
+
+version: "2"
+services:
+  app:
+    image: hub.mdt.net.ua/mdt-server-api

@@ -5,13 +5,26 @@
 
     <h3 class="bg-success">{{ shelving.name }}</h3>
 
-    {% for shelf in shelfs %}
-      <ul>
-          <li>{{ shelf.shelfName}}</li>
-      </ul>
-
-     {% endfor %}
-
-    <a href="{{ path('shelvings_list') }}"><button type="button" class="btn btn-primary">Back</button></a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Holding Capacity</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for shelf in shelfs %}
+            <tr>
+                <td>{{ shelf.id }}</td>
+                <td>{{ shelf.shelfName }}</td>
+                <td>{{ shelf.holdingCapacity }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('shelvings_list') }}">
+        <button type="button" class="btn btn-primary">Back</button>
+    </a>
 
 {% endblock %}

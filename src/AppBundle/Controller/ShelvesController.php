@@ -18,7 +18,6 @@ class ShelvesController extends Controller
     /**
      * @Route("/add_shelves", name="add shelf")
      */
-
     public function addShelvesAction(Request $request)
     {
         $shelf = new Shelf();

@@ -2,8 +2,10 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Shelving;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Shelf
@@ -13,24 +15,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Shelf
 {
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Shelving", inversedBy="shelfs")
-     * @ORM\JoinColumn(name="shelving_id", referencedColumnName="id")
-     */
-    private $shelving;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Item", mappedBy="shelf")
-     */
-    private $items;
-
-    public function __construct()
-    {
-        $this->items = new ArrayCollection();
-    }
-
-
     /**
      * @var int
      *
@@ -38,8 +22,6 @@ class Shelf
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-
-
     private $id;
 
     /**
@@ -56,6 +38,22 @@ class Shelf
      */
     private $shelfName;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Shelving", inversedBy="shelfs")
+     * @ORM\JoinColumn(name="shelving_id", referencedColumnName="id")
+     */
+    private $shelving;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Item", mappedBy="shelf")
+     */
+    private $items;
+
+
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -65,6 +63,16 @@ class Shelf
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get holdingCapacity
+     *
+     * @return int
+     */
+    public function getHoldingCapacity()
+    {
+        return $this->holdingCapacity;
     }
 
     /**
@@ -82,13 +90,13 @@ class Shelf
     }
 
     /**
-     * Get holdingCapacity
+     * Get shelfName
      *
-     * @return int
+     * @return string
      */
-    public function getHoldingCapacity()
+    public function getShelfName()
     {
-        return $this->holdingCapacity;
+        return $this->shelfName;
     }
 
     /**
@@ -106,33 +114,9 @@ class Shelf
     }
 
     /**
-     * Get shelfName
-     *
-     * @return string
-     */
-    public function getShelfName()
-    {
-        return $this->shelfName;
-    }
-
-    /**
-     * Set shelving
-     *
-     * @param \AppBundle\Entity\Shelving $shelving
-     *
-     * @return Shelf
-     */
-    public function setShelving(\AppBundle\Entity\Shelving $shelving)
-    {
-        $this->shelving = $shelving;
-
-        return $this;
-    }
-
-    /**
      * Get shelving
      *
-     * @return \AppBundle\Entity\Shelving
+     * @return Shelving
      */
     public function getShelving()
     {
@@ -140,13 +124,27 @@ class Shelf
     }
 
     /**
-     * Add item
+     * Set shelving
      *
-     * @param \AppBundle\Entity\Items $item
+     * @param Shelving $shelving
      *
      * @return Shelf
      */
-    public function addItem(\AppBundle\Entity\Items $item)
+    public function setShelving(Shelving $shelving)
+    {
+        $this->shelving = $shelving;
+
+        return $this;
+    }
+
+    /**
+     * Add item
+     *
+     * @param Item $item
+     *
+     * @return Shelf
+     */
+    public function addItem(Item $item)
     {
         $this->items[] = $item;
 
@@ -156,9 +154,9 @@ class Shelf
     /**
      * Remove item
      *
-     * @param \AppBundle\Entity\Items $item
+     * @param Item $item
      */
-    public function removeItem(\AppBundle\Entity\Items $item)
+    public function removeItem(Item $item)
     {
         $this->items->removeElement($item);
     }
@@ -166,10 +164,18 @@ class Shelf
     /**
      * Get items
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getItems()
     {
         return $this->items;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function __toString()
+    {
+        return "Selving:" . $this->getShelving()->getName() . " Shelf:" . $this->getShelfName();
     }
 }

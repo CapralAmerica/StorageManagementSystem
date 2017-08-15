@@ -1,0 +1,16 @@
+version: "2"
+services:
+  app:
+    volumes:
+      - appcode-test:/var/www/html:nocopy # nocopy is important
+    ports:
+      - 3100:80
+    environment:
+      DEV: 1
+      ERRORS: 1
+      XDEBUG_CONFIG: remote_host=192.168.1.6
+
+# that the important thing
+volumes:
+  appcode-test:
+    external: true

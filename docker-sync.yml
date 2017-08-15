@@ -1,0 +1,8 @@
+version: "2"
+
+options:
+  verbose: true
+syncs:
+  appcode-test: # tip: add -sync and you keep consistent names as a convention
+    src: './'
+    sync_excludes: [ 'Path var/cache','Path .git','Path .idea']

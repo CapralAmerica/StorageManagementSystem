@@ -82,8 +82,9 @@ class ShelvingsController extends Controller
     public function itemDetailsAction($id)
     {
         $em = $this->getDoctrine();
+        /** @var Shelving $shelving */
         $shelving = $em->getRepository('AppBundle:Shelving')->find($id);
-        $shelfs = $em->getRepository('AppBundle:Shelf')->findAll();
+        $shelfs = $shelving->getShelfs()->toArray();
 
         return $this->render("shelvings/shelving_details.html.twig", array('shelving' => $shelving, 'shelfs' => $shelfs));
     }

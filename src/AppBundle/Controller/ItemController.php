@@ -3,13 +3,11 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\AppBundle;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Item;
 use AppBundle\Form\ItemType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class ItemController extends Controller
@@ -27,8 +25,7 @@ class ItemController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isValid() && $form->isSubmitted())
-        {
+        if ($form->isValid() && $form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($item);
@@ -44,12 +41,10 @@ class ItemController extends Controller
     /**
      * @Route("/items_list", name = "items_list")
      */
-
-
     public function itemListAction()
     {
         $em = $this->getDoctrine();
-        $items= $em->getRepository('AppBundle:Item')->findAll();
+        $items = $em->getRepository('AppBundle:Item')->findAll();
 
         return $this->render('items/items_list.html.twig', array('items' => $items));
     }
@@ -57,7 +52,6 @@ class ItemController extends Controller
     /**
      * @Route("/items_list/{id}", name = "item details")
      */
-
     public function itemDetailsAction($id)
     {
         $em = $this->getDoctrine();
@@ -69,7 +63,6 @@ class ItemController extends Controller
     /**
      * @Route("/items_list/delete/{id}", name = "item delete")
      */
-
     public function deleteItemAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -84,7 +77,6 @@ class ItemController extends Controller
     /**
      * @Route("/items_list/edit/{id}", name = "item edit")
      */
-
     public function editItemAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -94,8 +86,7 @@ class ItemController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isValid() && $form->isSubmitted())
-        {
+        if ($form->isValid() && $form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($item);

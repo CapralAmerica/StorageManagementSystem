@@ -2,9 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Shelving
@@ -14,16 +14,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Shelving
 {
-
-    /**
-     * @ORM\OneToMany(targetEntity="Shelf", mappedBy="Shelviing")
-     */
-    private $shelfs;
-
-    public function __construct()
-    {
-        $this->shelfs = new ArrayCollection();
-    }
 
     /**
      * @var int
@@ -43,9 +33,7 @@ class Shelving
      * @Assert\Length(max=3)
      *
      */
-
-     private $name;
-
+    private $name;
 
     /**
      * @var int
@@ -54,6 +42,16 @@ class Shelving
      */
     private $shelfsQuantity;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Shelf", mappedBy="shelving")
+     * @ORM\OrderBy("shelfName")
+     */
+    private $shelfs;
+
+    public function __construct()
+    {
+        $this->shelfs = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -89,6 +87,15 @@ class Shelving
         return $this->name;
     }
 
+    /**
+     * Get shelfsQuantity
+     *
+     * @return integer
+     */
+    public function getShelfsQuantity()
+    {
+        return $this->shelfsQuantity;
+    }
 
     /**
      * Set shelfsQuantity
@@ -102,16 +109,6 @@ class Shelving
         $this->shelfsQuantity = $shelfsQuantity;
 
         return $this;
-    }
-
-    /**
-     * Get shelfsQuantity
-     *
-     * @return integer
-     */
-    public function getShelfsQuantity()
-    {
-        return $this->shelfsQuantity;
     }
 
     /**
@@ -148,6 +145,21 @@ class Shelving
         return $this->shelfs;
     }
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
     /**
      * Set name
      *
@@ -162,13 +174,4 @@ class Shelving
         return $this;
     }
 
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 }
