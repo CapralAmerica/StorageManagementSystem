@@ -1,0 +1,11 @@
+{% extends 'layouts/master.layout.html.twig' %}
+{% block title %} Shelving Edit {% endblock %}
+
+{% block content %}
+
+    <h2 class="text-center">Shelving item</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+{% endblock %}

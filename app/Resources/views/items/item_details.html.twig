@@ -1,0 +1,15 @@
+{% extends 'layouts/master.layout.html.twig' %}
+{% block title %} Item Details {% endblock %}
+
+{% block content %}
+    <h3 class="bg-success">Item Name</h3>  {{ item.itemName }}
+    <h3 class="bg-success">Price</h3>  {{ item.price }}
+    <h3 class="bg-success">Quantity</h3>  {{ item.quantity }}
+    <h3 class="bg-success">Release Date</h3>  {{ item.releaseDate| date("m/d/Y") }}
+    <h3 class="bg-success">Release Date</h3>  {{ item.expirationDate| date("m/d/Y") }}
+
+    <hr>
+
+    <a href="{{ path('items_list') }}"><button type="button" class="btn btn-primary">Back</button></a>
+
+{% endblock %}

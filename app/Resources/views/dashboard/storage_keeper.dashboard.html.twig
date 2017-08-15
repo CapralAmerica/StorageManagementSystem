@@ -1,0 +1,10 @@
+{% extends 'layouts/master.layout.html.twig' %}
+{% block title %} StorageKepper's page {% endblock %}
+
+{% block content %}
+
+    <a href="{{ path('homepage') }}"><button type="button" class="btn btn-primary">Home</button></a>
+    <a href="{{ path('items_list') }}"><button type="button" class="btn btn-primary">Items List</button></a>
+    <a href="{{ path('shelvings_list') }}"><button type="button" class="btn btn-primary">Shelvings</button></a>
+
+{% endblock %}

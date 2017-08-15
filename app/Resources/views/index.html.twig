@@ -1,0 +1,11 @@
+{% extends 'layouts/master.layout.html.twig' %}
+
+    {% block title %}
+         {{ 'Storage Management System' }}
+    {% endblock %}
+
+    {% block content %}
+        <h1 class="text-center">Storage Management System</h1>
+        <a href="{{ path('seller_dashboard') }}"><button type="button" class="btn btn-primary btn-block">Sellers's Page</button></a>
+        <a href="{{ path('storage_keeper_dashboard') }}"><button type="button" class="btn btn-success btn-block">StorageKeeper's Page</button></a>
+    {% endblock %}

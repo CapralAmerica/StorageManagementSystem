@@ -1,0 +1,15 @@
+{% extends 'layouts/master.layout.html.twig' %}
+{% block title %} Add new shelving {% endblock %}
+
+{% block content %}
+
+    {% for error in errors %}
+        <h2 class="bg-danger">{{ error.message }}</h2>
+    {% endfor %}
+
+    <h2 class="text-center">Add new shelving</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'layouts/master.layout.html.twig' %}
+{% block title %} Add Items {% endblock %}
+{% block content %}
+    <h2 class="text-center">Add new item</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

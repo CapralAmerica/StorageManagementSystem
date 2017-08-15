@@ -1,0 +1,31 @@
+{% extends 'layouts/master.layout.html.twig' %}
+{% block title %} Seller's page {% endblock %}
+
+{% block content %}
+
+          <table class="table">
+              <thead>
+              <tr>
+                  <th>Item Name</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Release Date</th>
+                  <th>Expiration Date</th>
+              </tr>
+              </thead>
+              <tbody>
+    {% for item in items %}
+            <tr>
+                  <td>{{ item.itemName }}></td>
+                  <td>{{ item.price }}></td>
+                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.releaseDate| date("m/d/Y") }}</td>
+                  <td>{{ item.expirationDate| date("m/d/Y") }}</td>
+            </tr>
+    {% endfor %}
+              </tbody>
+          </table>
+
+    <a href="{{ path('homepage') }}"><button type="button" class="btn btn-primary">Home</button></a>
+
+{% endblock %}

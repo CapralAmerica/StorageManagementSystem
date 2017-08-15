@@ -1,0 +1,33 @@
+{% extends 'layouts/master.layout.html.twig' %}
+{% block title %} Shelvings List {% endblock %}
+
+{% block content %}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Shelving Name</th>
+            <th>Shelfs Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for shelving in shelvings %}
+            <tr>
+                <td>{{ shelving.name }}></td>
+                <td>{{ shelving.shelfsQuantity }}></td>
+                <td>
+                    <a href="/shelvings_list/{{ shelving.id }}"><button type="button" class="btn btn-success">View</button></a>
+                    <a href="/shelvings_list/edit/{{ shelving.id }}"><button type="button" class="btn btn-warning">Edit</button></a>
+                    <a href="/shelvings_list/delete/{{ shelving.id }}"><button type="button" class="btn btn-danger">Delete</button></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('storage_keeper_dashboard') }}"><button type="button" class="btn btn-primary">Back</button></a>
+    <a href="{{ path('add_shelving') }}"><button type="button" class="btn btn-primary">Add new</button></a>
+    <a href="{{ path('add shelf') }}"><button type="button" class="btn btn-primary">Add shelfs</button></a>
+
+{% endblock %}
